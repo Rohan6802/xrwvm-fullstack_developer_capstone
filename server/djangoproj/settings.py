@@ -58,10 +58,16 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'djangoproj.urls'
 
-ALLOWED_HOSTS=['localhost','https://rohansharma1-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai']
+ALLOWED_HOSTS = [
+    'localhost',
+    'rohansharma1-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai',
+    'rohansharma1-8000.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai',
+]
 
-CSRF_TRUSTED_ORIGINS=['https://rohansharma1-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai']
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://rohansharma1-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai',
+    'https://rohansharma1-8000.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai',
+]
 
 TEMPLATES = [
     {
