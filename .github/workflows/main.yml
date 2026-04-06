@@ -53,8 +53,13 @@ jobs:
       - name: Run Linter
         run: |
           if [ -d "./server/database" ]; then
-            # Added the --config flag to allow modern JS features
-            jshint ./server/database --extra-ext .js --config .jshintrc || jshint ./server/database --esversion=8
+            # We use --extra-ext to ensure it picks up files
+            # and we pass the configuration as a string to avoid needing a .jshintrc file
+            jshint ./server/database --config /dev/null --extract=always || jshint ./server/database --version
+            
+            # Use this command specifically to force ES8 support without a config file:
+            find ./server/database -name "*.js" -exec jshint --esversion 8 {} +
           else
-            echo "Directory not found"
+            echo "Directory ./server/database not found!"
+            exit 1
           fi
