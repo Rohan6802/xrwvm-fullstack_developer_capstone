@@ -36,18 +36,26 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install Node.js
-        uses: actions/setup-node@v4 # Updated to v4
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
 
       - name: Install JSHint
         run: npm install -g jshint
 
-      - name: Run Linter
-        # Added a check to ensure the directory exists before running find
+      - name: Debugging - List Files
         run: |
+          echo "Current directory:"
+          pwd
+          echo "Showing directory structure:"
+          ls -R
+
+      - name: Run Linter
+        run: |
+          # Use -maxdepth or check directory existence to prevent crashes
           if [ -d "./server/database" ]; then
-            find ./server/database -name "*.js" -exec jshint {} +
+            jshint ./server/database
           else
-            echo "Directory ./server/database not found, skipping."
+            echo "ERROR: Directory ./server/database not found!"
+            exit 1
           fi
